@@ -5,7 +5,9 @@ services:
     restart: unless-stopped
     command: gateway run
     ports:
-      - "${PORT:-8642}:8642"
+      - "8642:8642"
+    labels:
+      - caddy.reverse_proxy={{upstreams 8642}}
     volumes:
       - hermes-data:/opt/data
     environment:
